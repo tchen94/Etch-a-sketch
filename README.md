@@ -1,2 +1,2 @@
 # Etch-a-sketch
-Etch-A-Sketch toy made with JS
+Infamous Etch-A-Sketch toy made with JS + DOM manipulation
