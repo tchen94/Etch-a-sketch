@@ -2,6 +2,7 @@
 
 // Grabbing the container
 const container = document.getElementById('container');
+const body = document.querySelector('body');
 
 newSketch();
 
@@ -19,30 +20,79 @@ function newSketch() {
     }
 }
 
-// Hover Effect//
+// Create ul + li for buttons //
+const ul = document.createElement('ul');
+ul.className = 'buttons';
+container.appendChild(ul);
+
+const liOne = document.createElement('li');
+const liTwo = document.createElement('li');
+const liThree = document.createElement('li');
+
+
+//  Default Hover Effect//
 
 // Grabbing the pixels
 const pixels = document.querySelectorAll('.pixels');
 
 pixels.forEach(cell => cell.addEventListener('mouseover', (e) => {
-    colorIn(cell);
+    blackInk(cell);
 }))
 
-function colorIn(cell) {
+function blackInk(cell) {
     cell.style.backgroundColor = 'black';
 }
 
 // Clear Button //
 
 const clrButton = document.createElement('button');
-clrButton.className = 'clear-button';
+clrButton.id = 'clear-button';
 clrButton.appendChild(document.createTextNode('Clear'));
-container.appendChild(clrButton);
+liOne.appendChild(clrButton);
+ul.appendChild(liOne);
+body.appendChild(ul);
 
 clrButton.addEventListener('click', clearSketch);
 
 function clearSketch() {
     pixels.forEach(cell => cell.style.backgroundColor = 'white');
+}
+
+// Rainbow Mode //
+
+const rgbButton = document.createElement('button');
+rgbButton.id = 'color-button';
+rgbButton.appendChild(document.createTextNode('Rainbow'));
+liTwo.appendChild(rgbButton);
+ul.appendChild(liTwo);
+body.appendChild(ul);
+
+rgbButton.addEventListener('click', colorIn);
+
+function colorIn() {
+    pixels.forEach(cell => cell.addEventListener('mouseover', (e) => {
+        let randomR = Math.floor(Math.random() * 256);
+        let randomG = Math.floor(Math.random() * 256);
+        let randomB = Math.floor(Math.random() * 256);
+        cell.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+    }))
+}
+
+// Black Ink //
+
+const blkButton = document.createElement('button');
+blkButton.id = 'black-button';
+blkButton.appendChild(document.createTextNode('Black'));
+liThree.appendChild(blkButton);
+ul.appendChild(liThree);
+body.appendChild(ul);
+
+blkButton.addEventListener('click', blackFill);
+
+function blackFill() {
+    pixels.forEach(cell => cell.addEventListener('mouseover', (e) => {
+        cell.style.backgroundColor = `black`;
+    }))
 }
 
 
