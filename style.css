@@ -1,0 +1,13 @@
+#container {
+    height: 500px;
+    width: 500px;
+    margin-left: 200px;
+}
+#container div {
+    display: inline-block;
+    vertical-align: top;
+    border-style: solid;
+    border-color: #f4f4f4;
+    width: 20px;
+    height: 20px;
+}
